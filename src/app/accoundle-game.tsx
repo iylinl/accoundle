@@ -668,7 +668,7 @@ export function AccoundleGame() {
               className="flex items-center gap-1.5 bg-white hover:bg-stone-50 border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-2 rounded-xl text-xs font-semibold text-[#4a5568] transition-colors"
             >
               <Calculator className="w-3.5 h-3.5 text-stone-500" />
-              <span></span>
+              
             </button>
 
             {/* Archive Button */}
@@ -678,7 +678,7 @@ export function AccoundleGame() {
               className="flex items-center gap-1.5 bg-white hover:bg-stone-50 border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-2 rounded-xl text-xs font-semibold text-[#4a5568] transition-colors"
             >
               <Archive className="w-3.5 h-3.5 text-stone-500" />
-              <span className="hidden sm:inline"></span>
+              
             </button>
 
             {/* Streak & Solved Counters */}
