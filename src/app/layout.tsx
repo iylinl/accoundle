@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-// @ts-ignore - Next.js provides CSS import types through its generated environment declarations.
-import "app/globals.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Accoundle | The Daily Accounting Journal Puzzle",
+  title: "accoundle | the daily accounting journal puzzle",
   description: "Test your accounting knowledge with a daily GAAP/IFRS general journal entry puzzle.",
 };
 
@@ -13,8 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased bg-stone-100 text-stone-900">{children}</body>
+    <html lang="en" className="dark">
+      <body className="antialiased bg-[#090a0f] text-zinc-100 min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }
