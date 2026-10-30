@@ -50,6 +50,14 @@ function ATLogo() {
           priority
           className="object-contain"
         />
+        <Image
+  src="/logo.png?v=2"
+  alt="accoundle logo"
+  width={96}
+  height={96}
+  priority
+  className="object-contain"
+/>
       </div>
 
       {/* Brand Text */}
