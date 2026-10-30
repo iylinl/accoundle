@@ -994,7 +994,7 @@ export function AccoundleGame() {
             </div>
           </div>
           <div className="md:text-right">
-            <p>2026 Accoundle</p>
+            <p>© 2026 Accoundle</p>
             
             
           </div>
