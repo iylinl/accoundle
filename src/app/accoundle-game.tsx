@@ -450,21 +450,21 @@ function TypeSelect({
         type="button"
         disabled={disabled}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl border text-xs font-bold transition-all ${
+        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl border text-xs font-bold transition-all duration-200 ${
           value === "debit"
-            ? "bg-white text-stone-800 border-[#ded8cb]"
-            : "bg-white text-stone-800 border-[#ded8cb]"
+            ? "bg-[#1c1d22] text-white border-[#1c1d22] shadow-[0_2px_8px_rgba(28,29,34,0.18)] hover:bg-black hover:border-black hover:-translate-y-0.5"
+            : "bg-white text-stone-700 border-[#ded8cb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:bg-[#fcfbf9] hover:border-[#b8b0a0] hover:-translate-y-0.5"
         } ${
           disabled
-            ? "opacity-50 cursor-not-allowed shadow-none"
-            : "hover:bg-[#fbfaf7] shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+            ? "opacity-50 cursor-not-allowed shadow-none hover:translate-y-0"
+            : "cursor-pointer active:scale-95 active:translate-y-0"
         }`}
       >
         <span>{value === "debit" ? "DR" : "CR"}</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 text-stone-400 transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+            value === "debit" ? "text-stone-300" : "text-stone-400"
+          } ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -478,7 +478,7 @@ function TypeSelect({
             }}
             className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors text-left ${
               value === "debit"
-                ? "bg-[#4a5568] text-white"
+                ? "bg-[#1c1d22] text-white"
                 : "text-stone-700 hover:bg-[#f5f2eb]"
             }`}
           >
@@ -492,7 +492,7 @@ function TypeSelect({
             }}
             className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors text-left ${
               value === "credit"
-                ? "bg-[#4a5568] text-white"
+                ? "bg-[#1c1d22] text-white"
                 : "text-stone-700 hover:bg-[#f5f2eb]"
             }`}
           >
@@ -503,7 +503,6 @@ function TypeSelect({
     </div>
   );
 }
-
 export function AccoundleGame() {
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
   const [todayDate, setTodayDate] = useState<string>("");
