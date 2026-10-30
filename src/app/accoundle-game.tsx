@@ -36,7 +36,7 @@ interface UserLine {
   validationStatus?: "idle" | "success" | "error";
 }
 
-// Brand Header with Enlarged Logo, Tight Kerning, and Soft Green Text Shadow
+// Brand Header with Enlarged Logo, Tight Kerning, and Soft Green Text Shadow #60c4a2 #108a80 #60c4a2
 function ATLogo() {
   return (
     <div className="bg-[#fcfbf9] border border-[#cbd5e1] rounded-2xl sm:rounded-[32px] px-3.5 py-2 sm:px-6 sm:py-3.5 flex items-center gap-2.5 sm:gap-4 select-none shadow-[0_6px_20px_rgba(28,29,34,0.08),0_2px_6px_rgba(28,29,34,0.04)] max-w-fit transition-transform">
@@ -56,9 +56,9 @@ function ATLogo() {
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-1.5 leading-none">
           <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight drop-shadow-[0_2px_4px_rgba(13,148,136,0.18)]">
-            <span className="text-[#4eb190]">acc</span>
-            <span className="text-[#0d9488]">oun</span>
-            <span className="text-[#4eb190]">dle</span>
+            <span className="text-[#60c4a2]">acc</span>
+            <span className="text-[#108a80]">oun</span>
+            <span className="text-[#60c4a2]">dle</span>
           </h1>
         </div>
         <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest text-[#78716c] mt-1 opacity-80">
