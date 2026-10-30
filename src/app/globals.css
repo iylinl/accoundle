@@ -4,8 +4,17 @@ html,
 body {
   background-color: #f4f1ea;
   color: #1c1d22;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Crisp Accounting Ledger Grid Pattern */
+.accounting-grid-bg {
+  background-color: #f4f1ea;
+  background-image: 
+    linear-gradient(to right, rgba(195, 188, 172, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(195, 188, 172, 0.28) 1px, transparent 1px);
+  background-size: 28px 28px;
 }

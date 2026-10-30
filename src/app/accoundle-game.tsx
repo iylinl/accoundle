@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
+import Image from "next/image";
 import confetti from "canvas-confetti";
 import {
   Plus,
@@ -18,6 +19,7 @@ import {
   Calendar,
   Check,
   Calculator,
+  BookOpen,
 } from "lucide-react";
 import {
   getTodayPuzzle,
@@ -34,6 +36,43 @@ interface UserLine {
   validationStatus?: "idle" | "success" | "error";
 }
 
+// Brand Header with Enlarged Logo, Tight Kerning, and Soft Green Text Shadow
+function ATLogo() {
+  return (
+    <div className="bg-[#fcfbf9] border border-[#cbd5e1] rounded-3xl sm:rounded-[36px] px-5 py-3.5 sm:px-6 sm:py-4 flex items-center gap-3.5 sm:gap-5 select-none shadow-[0_8px_30px_rgba(28,29,34,0.12),0_2px_8px_rgba(28,29,34,0.06)] max-w-fit transform hover:scale-[1.01] transition-transform duration-200">
+      {/* Significantly enlarged logo container */}
+      <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
+        <Image
+          src="/logo.png"
+          alt="accoundle logo"
+          width={96}
+          height={96}
+          priority
+          className="object-contain"
+        />
+      </div>
+
+      {/* Main text column with 'YOUR DAILY ENTRY' underneath */}
+      <div className="flex flex-col justify-center">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-none drop-shadow-[0_2px_4px_rgba(13,148,136,0.22)]">
+          <span className="text-[#4eb190]">acc</span>
+          <span className="text-[#0d9488]">oun</span>
+          <span className="text-[#4eb190]">dle</span>
+        </h1>
+        <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#78716c] mt-2 opacity-90">
+          THE T-ACCOUNT PUZZLE
+        </p>
+      </div>
+
+      {/* Daily badge positioned to the right of the text block */}
+      <div className="pl-1 sm:pl-2 flex items-center">
+        <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-lg bg-[#dcfce7] text-[#15803d] border border-[#bbf7d0] shadow-[0_1px_2px_rgba(16,185,129,0.15)] whitespace-nowrap">
+          daily
+        </span>
+      </div>
+    </div>
+  );
+}
 // 4-Function Slate Calculator Modal
 function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [display, setDisplay] = useState("0");
@@ -134,7 +173,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1c1d22]/40 backdrop-blur-sm">
-      <div className="bg-[#fbfaf7] border border-[#e2dcd2] rounded-2xl p-5 w-72 shadow-2xl">
+      <div className="bg-[#fbfaf7] border border-[#ded8cb] rounded-2xl p-5 w-72 shadow-[0_16px_40px_rgba(28,29,34,0.16)]">
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#ece7dc]">
           <span className="text-xs font-bold uppercase tracking-wider text-[#636874]">Calculator</span>
           <button
@@ -146,7 +185,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           </button>
         </div>
 
-        <div className="bg-white border border-[#e5e0d5] rounded-xl p-3 mb-4 text-right shadow-inner">
+        <div className="bg-white border border-[#ded8cb] rounded-xl p-3 mb-4 text-right shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)]">
           <div className="text-[10px] font-mono text-[#059669] h-4">
             {prevValue !== null && operation ? `${prevValue} ${operation}` : ""}
           </div>
@@ -159,28 +198,28 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           <button
             type="button"
             onClick={handleClear}
-            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-rose-600 border border-[#ded8cb] transition-colors"
+            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-rose-600 border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             C
           </button>
           <button
             type="button"
             onClick={handleSign}
-            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-[#4a5568] border border-[#ded8cb] transition-colors"
+            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-[#4a5568] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             ±
           </button>
           <button
             type="button"
             onClick={handlePercent}
-            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-[#4a5568] border border-[#ded8cb] transition-colors"
+            className="p-3 rounded-xl bg-[#eeeae0] hover:bg-[#e4ded2] text-[#4a5568] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             %
           </button>
           <button
             type="button"
             onClick={() => handleOp("÷")}
-            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] transition-colors"
+            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             ÷
           </button>
@@ -190,7 +229,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
               key={num}
               type="button"
               onClick={() => handleDigit(num)}
-              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#e2dcd2] transition-colors shadow-sm"
+              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
             >
               {num}
             </button>
@@ -198,7 +237,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           <button
             type="button"
             onClick={() => handleOp("×")}
-            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] transition-colors"
+            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             ×
           </button>
@@ -208,7 +247,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
               key={num}
               type="button"
               onClick={() => handleDigit(num)}
-              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#e2dcd2] transition-colors shadow-sm"
+              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
             >
               {num}
             </button>
@@ -216,7 +255,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           <button
             type="button"
             onClick={() => handleOp("−")}
-            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] transition-colors"
+            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             −
           </button>
@@ -226,7 +265,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
               key={num}
               type="button"
               onClick={() => handleDigit(num)}
-              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#e2dcd2] transition-colors shadow-sm"
+              className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
             >
               {num}
             </button>
@@ -234,7 +273,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           <button
             type="button"
             onClick={() => handleOp("+")}
-            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] transition-colors"
+            className="p-3 rounded-xl bg-[#dcfce7] hover:bg-[#bbf7d0] text-[#15803d] border border-[#86efac] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             +
           </button>
@@ -242,21 +281,21 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           <button
             type="button"
             onClick={() => handleDigit("0")}
-            className="col-span-2 p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#e2dcd2] transition-colors shadow-sm text-center"
+            className="col-span-2 p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95 text-center"
           >
             0
           </button>
           <button
             type="button"
             onClick={handleDot}
-            className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#e2dcd2] transition-colors shadow-sm"
+            className="p-3 rounded-xl bg-white hover:bg-stone-50 text-[#1c1d22] border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors active:scale-95"
           >
             .
           </button>
           <button
             type="button"
             onClick={handleEquals}
-            className="p-3 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-extrabold shadow-sm transition-colors"
+            className="p-3 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-extrabold shadow-[0_2px_6px_rgba(5,150,105,0.25)] transition-colors active:scale-95"
           >
             =
           </button>
@@ -266,7 +305,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
   );
 }
 
-// Custom Searchable Dropdown
+// Searchable Account Dropdown
 function AccountSelect({
   value,
   onChange,
@@ -307,16 +346,16 @@ function AccountSelect({
         type="button"
         disabled={disabled}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full flex items-center justify-between text-left px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition-colors ${
+        className={`w-full flex items-center justify-between text-left px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition-all ${
           disabled
-            ? "bg-[#f5f2eb] border-[#e2dcd2] text-stone-400 cursor-not-allowed"
+            ? "bg-[#f5f2eb] border-[#e2dcd2] text-stone-400 cursor-not-allowed shadow-none"
             : isOpen
-            ? "bg-white border-[#4a5568] ring-1 ring-[#4a5568]/20 shadow-sm text-[#1c1d22]"
-            : "bg-white border-[#ded8cb] hover:border-[#b8b0a0] text-[#1c1d22] shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+            ? "bg-white border-[#4a5568] ring-1 ring-[#4a5568]/20 shadow-[0_2px_6px_rgba(0,0,0,0.05)] text-[#1c1d22]"
+            : "bg-white border-[#ded8cb] hover:border-[#b8b0a0] text-[#1c1d22] shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
         }`}
       >
         <span className={value ? "text-[#1c1d22] font-medium truncate" : "text-stone-400 font-normal"}>
-          {value || "Select account..."}
+          {value || "Select Account..."}
         </span>
         <ChevronDown
           className={`w-4 h-4 text-stone-400 transition-transform ${
@@ -326,7 +365,7 @@ function AccountSelect({
       </button>
 
       {isOpen && (
-        <div className="absolute z-50 left-0 right-0 mt-2 bg-white rounded-xl border border-[#ded8cb] shadow-xl overflow-hidden">
+        <div className="absolute z-50 left-0 right-0 mt-2 bg-white rounded-xl border border-[#ded8cb] shadow-[0_10px_30px_rgba(0,0,0,0.12)] overflow-hidden">
           <div className="p-2 border-b border-[#ece7dc] flex items-center gap-2 bg-[#fcfbf9]">
             <Search className="w-3.5 h-3.5 text-stone-400 ml-1.5" />
             <input
@@ -379,7 +418,7 @@ function AccountSelect({
   );
 }
 
-// Custom Slate DR / CR Selector
+// Clean DR / CR Selector
 function TypeSelect({
   value,
   onChange,
@@ -408,22 +447,26 @@ function TypeSelect({
         type="button"
         disabled={disabled}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl border text-xs font-bold transition-colors ${
+        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl border text-xs font-bold transition-all ${
           value === "debit"
-            ? "bg-[#4a5568] text-white border-[#4a5568] shadow-sm"
-            : "bg-white text-[#4a5568] border-[#ded8cb] hover:bg-[#fbfaf7]"
-        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            ? "bg-white text-stone-800 border-[#ded8cb]"
+            : "bg-white text-stone-800 border-[#ded8cb]"
+        } ${
+          disabled
+            ? "opacity-50 cursor-not-allowed shadow-none"
+            : "hover:bg-[#fbfaf7] shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+        }`}
       >
         <span>{value === "debit" ? "DR" : "CR"}</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform ${
+          className={`w-3.5 h-3.5 text-stone-400 transition-transform ${
             isOpen ? "rotate-180" : ""
-          } ${value === "debit" ? "text-stone-300" : "text-stone-400"}`}
+          }`}
         />
       </button>
 
       {isOpen && !disabled && (
-        <div className="absolute z-50 left-0 mt-1 w-28 bg-white rounded-xl border border-[#ded8cb] shadow-xl p-1 animate-in fade-in duration-100">
+        <div className="absolute z-50 left-0 mt-1 w-28 bg-white rounded-xl border border-[#ded8cb] shadow-[0_10px_25px_rgba(0,0,0,0.12)] p-1 animate-in fade-in duration-100">
           <button
             type="button"
             onClick={() => {
@@ -613,7 +656,7 @@ export function AccoundleGame() {
           particleCount: 75,
           spread: 60,
           origin: { y: 0.65 },
-          colors: ["#10b981", "#059669", "#34d399", "#d1fae5"],
+          colors: ["#10b981", "#0d9488", "#34d399", "#d1fae5"],
         });
 
         const newStats = {
@@ -641,61 +684,49 @@ export function AccoundleGame() {
   if (!puzzle) return null;
 
   return (
-    <div className="min-h-screen bg-[#f4f1ea] text-[#1c1d22] selection:bg-emerald-100 selection:text-emerald-900 font-sans">
-      <div className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
+    <div className="min-h-screen accounting-grid-bg text-[#1c1d22] selection:bg-emerald-100 selection:text-emerald-900 font-sans pb-16">
+      <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         {/* Top Header */}
-        <header className="flex items-center justify-between pb-6 mb-8 border-b border-[#e5e0d5]">
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                <span className="text-[#059669]">accou</span>
-                <span className="text-[#1c1d22]">ndle</span>
-              </h1>
-              <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#e8f5e9] text-[#166534] border border-[#c8e6c9]">
-                daily
-              </span>
-            </div>
-            <p className="text-stone-500 text-xs sm:text-sm mt-1">
-              the daily general journal entry puzzle
-            </p>
-          </div>
+        <header className="flex items-center justify-between pb-6 mb-7">
+          <ATLogo />
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {/* Calculator Button */}
             <button
               type="button"
               onClick={() => setCalcOpen(true)}
-              className="flex items-center gap-1.5 bg-white hover:bg-stone-50 border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-2 rounded-xl text-xs font-semibold text-[#4a5568] transition-colors"
+              className="p-2 sm:px-3 sm:py-1.5 bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] rounded-xl text-stone-600 hover:text-black transition-all active:scale-95"
+              title="Calculator"
             >
-              <Calculator className="w-3.5 h-3.5 text-stone-500" />
-              
+              <Calculator className="w-4 h-4" />
             </button>
 
             {/* Archive Button */}
             <button
               type="button"
               onClick={() => setArchiveOpen(true)}
-              className="flex items-center gap-1.5 bg-white hover:bg-stone-50 border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-2 rounded-xl text-xs font-semibold text-[#4a5568] transition-colors"
+              className="p-2 sm:px-3 sm:py-1.5 bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] rounded-xl text-stone-600 hover:text-black transition-all active:scale-95"
+              title="Problem Archive"
             >
-              <Archive className="w-3.5 h-3.5 text-stone-500" />
-              
+              <Archive className="w-4 h-4" />
             </button>
 
-            {/* Streak & Solved Counters */}
-            <div className="bg-white border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-1.5 rounded-xl text-center">
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-400">
+            {/* Streak Counter */}
+            <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] px-3 py-1 rounded-xl text-center min-w-[58px]">
+              <span className="block text-[9px] font-bold uppercase tracking-wider text-stone-400">
                 Streak
               </span>
-              <span className="text-sm sm:text-base font-extrabold text-[#1c1d22]">
+              <span className="text-sm font-extrabold text-[#1c1d22] leading-tight">
                 {stats.streak}
               </span>
             </div>
 
-            <div className="bg-white border border-[#ded8cb] shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-3.5 py-1.5 rounded-xl text-center">
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-400">
+            {/* Solved Counter */}
+            <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] px-3 py-1 rounded-xl text-center min-w-[58px]">
+              <span className="block text-[9px] font-bold uppercase tracking-wider text-stone-400">
                 Solved
               </span>
-              <span className="text-sm sm:text-base font-extrabold text-[#1c1d22]">
+              <span className="text-sm font-extrabold text-[#1c1d22] leading-tight">
                 {stats.played}
               </span>
             </div>
@@ -703,13 +734,13 @@ export function AccoundleGame() {
         </header>
 
         {/* Daily Scenario Card */}
-        <div className="bg-white border border-[#e5e0d5] rounded-2xl p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.03)] mb-7">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+        <div className="bg-[#fcfbf9] border border-[#ded8cb] rounded-2xl p-6 sm:p-7 shadow-[0_4px_20px_-2px_rgba(28,29,34,0.08),0_2px_6px_-1px_rgba(28,29,34,0.04)] mb-6">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#166534] bg-[#e8f5e9] border border-[#c8e6c9] px-2.5 py-0.5 rounded-md">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#15803d] bg-[#dcfce7] border border-[#bbf7d0] px-2 py-0.5 rounded-md shadow-[0_1px_2px_rgba(16,185,129,0.1)]">
                 {puzzle.difficulty}
               </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#4a5568] bg-[#f0eee6] border border-[#ded8cb] px-2.5 py-0.5 rounded-md">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-600 bg-[#eeeae0] border border-[#ded8cb] px-2 py-0.5 rounded-md">
                 {puzzle.standard}
               </span>
             </div>
@@ -718,16 +749,16 @@ export function AccoundleGame() {
             </span>
           </div>
 
-          <h2 className="text-lg sm:text-xl font-bold text-[#1c1d22] tracking-tight mb-2">
+          <h2 className="text-base sm:text-lg font-bold text-[#1c1d22] tracking-tight mb-2">
             {puzzle.title}
           </h2>
-          <p className="text-stone-600 leading-relaxed text-sm sm:text-base font-normal">
+          <p className="text-stone-600 leading-relaxed text-xs sm:text-sm font-normal">
             {puzzle.description}
           </p>
 
-          <div className="mt-5 pt-4 border-t border-[#f0ede6] flex items-center gap-2 text-xs font-medium text-stone-500">
-            <GraduationCap className="w-4 h-4 text-[#059669] shrink-0" />
-            <span>CPA Blueprint Alignment:</span>
+          <div className="mt-4 pt-3.5 border-t border-[#ede9df] flex items-center gap-2 text-xs text-stone-500">
+            <GraduationCap className="w-4 h-4 text-[#0d9488] shrink-0" />
+            <span className="text-stone-500">CPA Blueprint Alignment:</span>
             <span className="text-stone-800 font-semibold">{puzzle.cpaExamSection}</span>
           </div>
         </div>
@@ -735,12 +766,12 @@ export function AccoundleGame() {
         {/* Interactive Journal Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white border border-[#e5e0d5] rounded-2xl p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.03)] mb-7"
+          className="bg-[#fcfbf9] border border-[#ded8cb] rounded-2xl p-6 sm:p-7 shadow-[0_4px_20px_-2px_rgba(28,29,34,0.08),0_2px_6px_-1px_rgba(28,29,34,0.04)] mb-7"
         >
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Scale className="w-4 h-4 text-stone-400" />
-              <h3 className="text-xs font-bold uppercase tracking-wider text-stone-700">
+              <h3 className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
                 General Journal
               </h3>
             </div>
@@ -748,13 +779,21 @@ export function AccoundleGame() {
               type="button"
               onClick={addLine}
               disabled={submitted && isCorrect}
-              className="flex items-center gap-1.5 text-xs font-semibold text-stone-700 hover:text-black bg-[#f4f1ea] hover:bg-[#eae6dc] active:scale-95 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-40"
+              className="flex items-center gap-1 text-xs font-semibold text-stone-700 hover:text-black bg-[#eeeae0] hover:bg-[#e4ded2] shadow-[0_1px_2px_rgba(0,0,0,0.04)] active:scale-95 px-3 py-1.5 rounded-lg transition-all disabled:opacity-40"
             >
               <Plus className="w-3.5 h-3.5 text-stone-500" /> Add Row
             </button>
           </div>
 
-          <div className="space-y-3">
+          {/* Column Header Bar */}
+          <div className="grid grid-cols-12 gap-2 sm:gap-3 px-2 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-stone-400">
+            <div className="col-span-3 sm:col-span-2">[DR / CR]</div>
+            <div className="col-span-5 sm:col-span-6">[Account Name / Description]</div>
+            <div className="col-span-3 sm:col-span-3">Amount ($)</div>
+            <div className="col-span-1"></div>
+          </div>
+
+          <div className="space-y-2.5">
             {lines.map((line) => {
               const isSuccess = line.validationStatus === "success";
               const isError = line.validationStatus === "error";
@@ -762,12 +801,12 @@ export function AccoundleGame() {
               return (
                 <div
                   key={line.id}
-                  className={`grid grid-cols-12 gap-2 sm:gap-3 items-center p-2 rounded-xl transition-colors duration-200 ${
+                  className={`grid grid-cols-12 gap-2 sm:gap-3 items-center p-2 rounded-xl transition-all duration-150 ${
                     isSuccess
-                      ? "bg-[#ecfdf5] border border-[#a7f3d0] ring-1 ring-[#10b981]/30"
+                      ? "bg-[#ecfdf5] border border-[#a7f3d0] shadow-[0_2px_8px_rgba(16,185,129,0.12)]"
                       : isError
-                      ? "bg-[#fff1f2] border border-[#fecdd3]"
-                      : "bg-[#fbfaf7] border border-[#ece7dc]"
+                      ? "bg-[#fff1f2] border border-[#fecdd3] shadow-[0_2px_8px_rgba(244,63,94,0.12)]"
+                      : "bg-[#f5f2eb] border border-[#ded8cb] shadow-[0_1px_3px_rgba(28,29,34,0.05)]"
                   }`}
                 >
                   <div className="col-span-3 sm:col-span-2">
@@ -798,7 +837,7 @@ export function AccoundleGame() {
                         disabled={submitted && isCorrect}
                         required
                         onChange={(e) => updateLine(line.id, "amount", e.target.value)}
-                        className="w-full text-xs sm:text-sm rounded-xl border border-[#ded8cb] pl-6 pr-3 py-2.5 font-mono text-[#1c1d22] placeholder-stone-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#4a5568] focus:border-[#4a5568] transition-colors"
+                        className="w-full text-xs sm:text-sm rounded-xl border border-[#ded8cb] pl-6 pr-3 py-2 font-mono text-[#1c1d22] placeholder-stone-300 bg-white focus:outline-none focus:border-[#4a5568] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all"
                       />
                     </div>
                   </div>
@@ -808,7 +847,7 @@ export function AccoundleGame() {
                       <button
                         type="button"
                         onClick={() => removeLine(line.id)}
-                        className="text-stone-400 hover:text-rose-600 transition-colors p-1.5 rounded-md hover:bg-stone-100"
+                        className="text-stone-400 hover:text-rose-600 transition-colors p-1 rounded-md"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -820,23 +859,23 @@ export function AccoundleGame() {
           </div>
 
           {/* Balance Bar & Action */}
-          <div className="mt-8 pt-5 border-t border-[#f0ede6] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 text-xs sm:text-sm font-mono w-full sm:w-auto justify-between sm:justify-start">
-              <div className="bg-[#f7f5ef] border border-[#e2dcd2] px-3 py-1.5 rounded-lg">
-                <span className="text-stone-400 mr-1.5 text-[11px] uppercase tracking-wider">DR</span>
+          <div className="mt-7 pt-4 border-t border-[#ede9df] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-xs font-mono w-full sm:w-auto justify-between sm:justify-start">
+              <div className="bg-[#eeeae0] border border-[#ded8cb] px-3 py-1.5 rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <span className="text-stone-500 mr-1.5 text-[10px] uppercase font-bold">DR</span>
                 <span className="font-bold text-[#1c1d22]">${totalDebits.toLocaleString()}</span>
               </div>
-              <div className="bg-[#f7f5ef] border border-[#e2dcd2] px-3 py-1.5 rounded-lg">
-                <span className="text-stone-400 mr-1.5 text-[11px] uppercase tracking-wider">CR</span>
+              <div className="bg-[#eeeae0] border border-[#ded8cb] px-3 py-1.5 rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <span className="text-stone-500 mr-1.5 text-[10px] uppercase font-bold">CR</span>
                 <span className="font-bold text-[#1c1d22]">${totalCredits.toLocaleString()}</span>
               </div>
               <div>
                 {isBalanced ? (
-                  <span className="inline-flex items-center gap-1 text-[#15803d] font-semibold bg-[#e8f5e9] border border-[#c8e6c9] px-2.5 py-1 rounded-md text-xs">
+                  <span className="inline-flex items-center gap-1 text-[#15803d] font-semibold bg-[#dcfce7] border border-[#bbf7d0] px-2.5 py-1 rounded-md text-xs shadow-[0_1px_2px_rgba(16,185,129,0.12)]">
                     <Check className="w-3.5 h-3.5" /> In Balance
                   </span>
                 ) : (
-                  <span className="text-rose-600 font-semibold text-xs bg-rose-50 border border-rose-200 px-2 py-1 rounded-md">
+                  <span className="text-rose-600 font-semibold text-xs bg-rose-50 border border-rose-200 px-2 py-1 rounded-md shadow-[0_1px_2px_rgba(244,63,94,0.08)]">
                     Δ ${(Math.abs(totalDebits - totalCredits)).toLocaleString()}
                   </span>
                 )}
@@ -847,7 +886,7 @@ export function AccoundleGame() {
               <button
                 type="submit"
                 disabled={!isBalanced}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-[#1c1d22] hover:bg-[#2e313b] active:scale-[0.98] transition-colors shadow-sm disabled:opacity-30 disabled:pointer-events-none"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-[#1c1d22] hover:bg-[#2e313b] active:scale-[0.98] transition-all shadow-[0_4px_12px_rgba(28,29,34,0.18)] disabled:opacity-30 disabled:pointer-events-none"
               >
                 <span>Post Entry</span>
                 <Sparkles className="w-3.5 h-3.5 text-[#34d399]" />
@@ -859,24 +898,24 @@ export function AccoundleGame() {
         {/* Results Drawer */}
         {submitted && (
           <div
-            className={`rounded-2xl p-6 sm:p-7 border transition-colors ${
+            className={`rounded-2xl p-6 sm:p-7 border mb-8 transition-all ${
               isCorrect
-                ? "bg-[#ecfdf5] border-[#a7f3d0] shadow-sm"
-                : "bg-[#fff1f2] border-[#fecdd3] shadow-sm"
+                ? "bg-[#ecfdf5] border-[#a7f3d0] shadow-[0_6px_20px_rgba(16,185,129,0.12)]"
+                : "bg-[#fff1f2] border-[#fecdd3] shadow-[0_6px_20px_rgba(244,63,94,0.12)]"
             }`}
           >
             <div className="flex items-center gap-2 mb-3">
               {isCorrect ? (
                 <>
                   <CheckCircle2 className="w-5 h-5 text-[#059669]" />
-                  <h3 className="text-base sm:text-lg font-bold text-[#064e3b]">
+                  <h3 className="text-sm sm:text-base font-bold text-[#064e3b]">
                     Journal Entry Reconciled
                   </h3>
                 </>
               ) : (
                 <>
                   <AlertCircle className="w-5 h-5 text-rose-600" />
-                  <h3 className="text-base sm:text-lg font-bold text-rose-950">
+                  <h3 className="text-sm sm:text-base font-bold text-rose-950">
                     Adjusting Entry Required
                   </h3>
                 </>
@@ -884,7 +923,7 @@ export function AccoundleGame() {
             </div>
 
             {feedback.length > 0 && (
-              <ul className="text-xs sm:text-sm text-rose-700 space-y-1 mb-4 pl-5 list-disc">
+              <ul className="text-xs text-rose-700 space-y-1 mb-4 pl-5 list-disc">
                 {feedback.map((err, i) => (
                   <li key={i}>{err}</li>
                 ))}
@@ -893,15 +932,15 @@ export function AccoundleGame() {
 
             {isCorrect && (
               <div className="space-y-4">
-                <div className="bg-white rounded-xl p-4 border border-[#a7f3d0] text-xs sm:text-sm text-stone-700 leading-relaxed shadow-sm">
+                <div className="bg-white rounded-xl p-4 border border-[#a7f3d0] text-xs text-stone-700 leading-relaxed shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
                   <span className="font-bold text-[#1c1d22] block mb-1">GAAP Analysis:</span>
                   {puzzle.explanation}
                 </div>
 
-                <div className="bg-[#e6f4ea] rounded-xl p-3.5 border border-[#b7dfc4] flex items-start gap-2.5 text-xs text-[#064e3b]">
+                <div className="bg-[#e6f4ea] rounded-xl p-3.5 border border-[#b7dfc4] flex items-start gap-2.5 text-xs text-[#064e3b] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
                   <GraduationCap className="w-4 h-4 text-[#059669] mt-0.5 shrink-0" />
                   <div>
-                    <span className="font-bold">CPA Exam Relevance ({puzzle.cpaExamSection}): </span>
+                    <span className="font-bold">CPA Exam Blueprint ({puzzle.cpaExamSection}): </span>
                     <span className="text-[#064e3b]/90">{puzzle.cpaTopicBlueprint}</span>
                   </div>
                 </div>
@@ -909,7 +948,7 @@ export function AccoundleGame() {
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="inline-flex items-center gap-2 bg-[#1c1d22] hover:bg-[#2e313b] text-white text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-colors shadow-sm active:scale-95"
+                  className="inline-flex items-center gap-2 bg-[#1c1d22] hover:bg-[#2e313b] text-white text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-xl transition-all shadow-[0_4px_12px_rgba(28,29,34,0.15)] active:scale-95"
                 >
                   <Share2 className="w-3.5 h-3.5 text-[#34d399]" />
                   {copied ? "Copied to Clipboard!" : "Share Result"}
@@ -919,14 +958,41 @@ export function AccoundleGame() {
           </div>
         )}
 
-        {/* Slate Archive Modal */}
+        {/* 3-Column Footer */}
+        <footer className="pt-6 border-t border-[#ded8cb] grid grid-cols-1 md:grid-cols-3 gap-6 text-[11px] text-stone-500 leading-relaxed">
+          <div>
+            <p>
+              Accoundle is designed for educational practice and CPA exam review.
+              Reference US GAAP (FASB ASC) / IFRS.
+            </p>
+          </div>
+          <div className="md:text-center">
+            <span className="block font-semibold text-stone-700">Feedback & Bug Reports:</span>
+            <a
+              href="mailto:hello@accoundle.com"
+              className="text-[#0d9488] hover:underline"
+            >
+              hello@accoundle.com
+            </a>
+            <div className="mt-0.5">
+              <span className="text-stone-400">Report an Error</span>
+            </div>
+          </div>
+          <div className="md:text-right">
+            <p>2026 Accoundle</p>
+            
+            
+          </div>
+        </footer>
+
+        {/* Problem Archive Modal */}
         {archiveOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1c1d22]/40 backdrop-blur-sm animate-in fade-in duration-150">
-            <div className="bg-[#fbfaf7] rounded-2xl border border-[#ded8cb] max-w-lg w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+            <div className="bg-[#fbfaf7] rounded-2xl border border-[#ded8cb] max-w-lg w-full max-h-[80vh] flex flex-col shadow-[0_16px_40px_rgba(28,29,34,0.18)] overflow-hidden">
               <div className="p-5 border-b border-[#ece7dc] flex items-center justify-between bg-white">
                 <div>
                   <h3 className="text-base font-bold text-[#1c1d22] flex items-center gap-2">
-                    <Archive className="w-4 h-4 text-stone-600" /> Problem Archive
+                    <BookOpen className="w-4 h-4 text-stone-600" /> Problem Archive
                   </h3>
                   <p className="text-xs text-stone-400 mt-0.5">
                     Practice historical daily journal entries
@@ -963,10 +1029,10 @@ export function AccoundleGame() {
                           loadPuzzle(p);
                           setArchiveOpen(false);
                         }}
-                        className={`p-3.5 rounded-xl cursor-pointer transition-colors border flex items-center justify-between ${
+                        className={`p-3.5 rounded-xl cursor-pointer transition-all border flex items-center justify-between ${
                           isSelected
-                            ? "bg-[#4a5568] text-white border-[#4a5568] shadow-sm"
-                            : "bg-white border-[#ded8cb] hover:border-[#b8b0a0] text-[#1c1d22] hover:bg-[#fcfbf9]"
+                            ? "bg-[#4a5568] text-white border-[#4a5568] shadow-[0_2px_8px_rgba(74,85,104,0.25)]"
+                            : "bg-white border-[#ded8cb] hover:border-[#b8b0a0] text-[#1c1d22] hover:bg-[#fcfbf9] shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                         }`}
                       >
                         <div>
@@ -975,7 +1041,7 @@ export function AccoundleGame() {
                               className={`text-[10px] font-mono px-2 py-0.5 rounded ${
                                 isSelected
                                   ? "bg-[#333c4a] text-stone-200"
-                                  : "bg-[#f4f1ea] text-stone-600"
+                                  : "bg-[#eeeae0] text-stone-600"
                               }`}
                             >
                               {p.date}
@@ -1010,10 +1076,10 @@ export function AccoundleGame() {
                               className={`text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 ${
                                 isSelected
                                   ? "bg-[#333c4a] text-[#86efac]"
-                                  : "bg-[#e8f5e9] text-[#166534] border border-[#c8e6c9]"
+                                  : "bg-[#dcfce7] text-[#15803d] border border-[#bbf7d0]"
                               }`}
                             >
-                              <Check className="w-3 h-3 text-[#166534]" /> Solved
+                              <Check className="w-3 h-3 text-[#15803d]" /> Solved
                             </span>
                           )}
                         </div>
