@@ -56,9 +56,9 @@ function ATLogo() {
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-1.5 leading-none">
           <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight drop-shadow-[0_2px_4px_rgba(13,148,136,0.18)]">
-            <span className="text-[#10b981]">acc</span>
+            <span className="text-[#4eb190]">acc</span>
             <span className="text-[#0d9488]">oun</span>
-            <span className="text-[#10b981]">dle</span>
+            <span className="text-[#4eb190]">dle</span>
           </h1>
         </div>
         <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest text-[#78716c] mt-1 opacity-80">
