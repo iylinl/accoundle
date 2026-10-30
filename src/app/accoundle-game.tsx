@@ -39,34 +39,36 @@ interface UserLine {
 // Brand Header with Enlarged Logo, Tight Kerning, and Soft Green Text Shadow
 function ATLogo() {
   return (
-    <div className="bg-[#fcfbf9] border border-[#cbd5e1] rounded-3xl sm:rounded-[36px] px-5 py-3.5 sm:px-6 sm:py-4 flex items-center gap-3.5 sm:gap-5 select-none shadow-[0_8px_30px_rgba(28,29,34,0.12),0_2px_8px_rgba(28,29,34,0.06)] max-w-fit transform hover:scale-[1.01] transition-transform duration-200">
-      {/* Significantly enlarged logo container */}
-      <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
+    <div className="bg-[#fcfbf9] border border-[#cbd5e1] rounded-2xl sm:rounded-[32px] px-3.5 py-2 sm:px-6 sm:py-3.5 flex items-center gap-2.5 sm:gap-4 select-none shadow-[0_6px_20px_rgba(28,29,34,0.08),0_2px_6px_rgba(28,29,34,0.04)] max-w-fit transition-transform">
+      {/* Mobile: 44px, Desktop: 80px */}
+      <div className="relative w-11 h-11 sm:w-20 sm:h-20 flex-shrink-0 drop-shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
         <Image
           src="/logo.png"
           alt="accoundle logo"
-          width={96}
-          height={96}
+          width={80}
+          height={80}
           priority
           className="object-contain"
         />
       </div>
 
-      {/* Main text column with 'YOUR DAILY ENTRY' underneath */}
+      {/* Brand Text */}
       <div className="flex flex-col justify-center">
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-none drop-shadow-[0_2px_4px_rgba(13,148,136,0.22)]">
-          <span className="text-[#4eb190]">acc</span>
-          <span className="text-[#0d9488]">oun</span>
-          <span className="text-[#4eb190]">dle</span>
-        </h1>
-        <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#78716c] mt-2 opacity-90">
-          THE T-ACCOUNT PUZZLE
+        <div className="flex items-center gap-1.5 leading-none">
+          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight drop-shadow-[0_2px_4px_rgba(13,148,136,0.18)]">
+            <span className="text-[#10b981]">acc</span>
+            <span className="text-[#0d9488]">oun</span>
+            <span className="text-[#10b981]">dle</span>
+          </h1>
+        </div>
+        <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest text-[#78716c] mt-1 opacity-80">
+          YOUR DAILY ENTRY
         </p>
       </div>
 
-      {/* Daily badge positioned to the right of the text block */}
-      <div className="pl-1 sm:pl-2 flex items-center">
-        <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-lg bg-[#dcfce7] text-[#15803d] border border-[#bbf7d0] shadow-[0_1px_2px_rgba(16,185,129,0.15)] whitespace-nowrap">
+      {/* Side Badge */}
+      <div className="pl-0.5 sm:pl-1 flex items-center">
+        <span className="text-[8px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg bg-[#dcfce7] text-[#15803d] border border-[#bbf7d0] shadow-[0_1px_2px_rgba(16,185,129,0.12)] whitespace-nowrap">
           daily
         </span>
       </div>
@@ -687,51 +689,64 @@ export function AccoundleGame() {
     <div className="min-h-screen accounting-grid-bg text-[#1c1d22] selection:bg-emerald-100 selection:text-emerald-900 font-sans pb-16">
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         {/* Top Header */}
-        <header className="flex items-center justify-between pb-6 mb-7">
-          <ATLogo />
+        {/* Top Header Block in AccoundleGame */}
+<header className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3.5 sm:gap-6 pb-5 sm:pb-6 mb-5 sm:mb-7">
+  {/* Capsule Branding */}
+  <ATLogo />
 
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Calculator Button */}
-            <button
-              type="button"
-              onClick={() => setCalcOpen(true)}
-              className="p-2 sm:px-3 sm:py-1.5 bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] rounded-xl text-stone-600 hover:text-black transition-all active:scale-95"
-              title="Calculator"
-            >
-              <Calculator className="w-4 h-4" />
-            </button>
+  {/* Header Utility Controls */}
+<div className="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full sm:w-auto">
+  {/* Calculator Button */}
+  <button
+    type="button"
+    onClick={() => setCalcOpen(true)}
+    className="bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-[#b8b0a0] px-2.5 sm:px-3 py-1 rounded-xl text-center min-w-[50px] sm:min-w-[58px] transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+    title="Calculator"
+  >
+    <span className="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-stone-400">
+      Calc
+    </span>
+    <span className="h-4 sm:h-5 flex items-center justify-center text-stone-600 hover:text-[#1c1d22]">
+      <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+    </span>
+  </button>
 
-            {/* Archive Button */}
-            <button
-              type="button"
-              onClick={() => setArchiveOpen(true)}
-              className="p-2 sm:px-3 sm:py-1.5 bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] rounded-xl text-stone-600 hover:text-black transition-all active:scale-95"
-              title="Problem Archive"
-            >
-              <Archive className="w-4 h-4" />
-            </button>
+  {/* Archive Button */}
+  <button
+    type="button"
+    onClick={() => setArchiveOpen(true)}
+    className="bg-[#fbfaf7] hover:bg-white border border-[#ded8cb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-[#b8b0a0] px-2.5 sm:px-3 py-1 rounded-xl text-center min-w-[50px] sm:min-w-[58px] transition-all active:scale-95 flex flex-col items-center justify-center cursor-pointer"
+    title="Problem Archive"
+  >
+    <span className="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-stone-400">
+      Past
+    </span>
+    <span className="h-4 sm:h-5 flex items-center justify-center text-stone-600 hover:text-[#1c1d22]">
+      <Archive className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+    </span>
+  </button>
 
-            {/* Streak Counter */}
-            <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] px-3 py-1 rounded-xl text-center min-w-[58px]">
-              <span className="block text-[9px] font-bold uppercase tracking-wider text-stone-400">
-                Streak
-              </span>
-              <span className="text-sm font-extrabold text-[#1c1d22] leading-tight">
-                {stats.streak}
-              </span>
-            </div>
+  {/* Streak Counter */}
+  <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] px-2.5 sm:px-3 py-1 rounded-xl text-center min-w-[50px] sm:min-w-[58px]">
+    <span className="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-stone-400">
+      Streak
+    </span>
+    <span className="h-4 sm:h-5 flex items-center justify-center text-xs sm:text-sm font-extrabold text-[#1c1d22] leading-tight">
+      {stats.streak}
+    </span>
+  </div>
 
-            {/* Solved Counter */}
-            <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_2px_6px_rgba(0,0,0,0.04)] px-3 py-1 rounded-xl text-center min-w-[58px]">
-              <span className="block text-[9px] font-bold uppercase tracking-wider text-stone-400">
-                Solved
-              </span>
-              <span className="text-sm font-extrabold text-[#1c1d22] leading-tight">
-                {stats.played}
-              </span>
-            </div>
-          </div>
-        </header>
+  {/* Solved Counter */}
+  <div className="bg-[#fbfaf7] border border-[#ded8cb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] px-2.5 sm:px-3 py-1 rounded-xl text-center min-w-[50px] sm:min-w-[58px]">
+    <span className="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-stone-400">
+      Solved
+    </span>
+    <span className="h-4 sm:h-5 flex items-center justify-center text-xs sm:text-sm font-extrabold text-[#1c1d22] leading-tight">
+      {stats.played}
+    </span>
+  </div>
+</div>
+</header>
 
         {/* Daily Scenario Card */}
         <div className="bg-[#fcfbf9] border border-[#ded8cb] rounded-2xl p-6 sm:p-7 shadow-[0_4px_20px_-2px_rgba(28,29,34,0.08),0_2px_6px_-1px_rgba(28,29,34,0.04)] mb-6">
