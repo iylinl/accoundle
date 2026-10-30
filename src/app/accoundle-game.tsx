@@ -39,9 +39,9 @@ interface UserLine {
 // Brand Header with Enlarged Logo, Tight Kerning, and Soft Green Text Shadow #60c4a2 #108a80 #60c4a2
 function ATLogo() {
   return (
-    <div className="bg-[#fcfbf9] border border-[#cbd5e1] rounded-2xl sm:rounded-[32px] px-3.5 py-2 sm:px-6 sm:py-3.5 flex items-center gap-2.5 sm:gap-4 select-none shadow-[0_6px_20px_rgba(28,29,34,0.08),0_2px_6px_rgba(28,29,34,0.04)] max-w-fit transition-transform">
-      {/* Mobile: 44px, Desktop: 80px */}
-      <div className="relative w-11 h-11 sm:w-20 sm:h-20 flex-shrink-0 drop-shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+    <div className="group bg-[#fcfbf9] hover:bg-white border border-[#cbd5e1] hover:border-[#94a3b8] rounded-2xl sm:rounded-3xl px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2 sm:gap-3 select-none shadow-[0_4px_16px_rgba(28,29,34,0.08),0_1px_4px_rgba(28,29,34,0.04)] hover:shadow-[0_10px_28px_rgba(28,29,34,0.12),0_3px_8px_rgba(28,29,34,0.06)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] max-w-fit transition-all duration-200 cursor-pointer">
+      {/* Logo Container with subtle hover tilt */}
+      <div className="relative w-12 h-12 sm:w-20 sm:h-20 flex-shrink-0 drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)] group-hover:scale-105 transition-transform duration-200">
         <Image
           src="/logo.png"
           alt="accoundle logo"
@@ -52,23 +52,23 @@ function ATLogo() {
         />
       </div>
 
-      {/* Brand Text */}
-      <div className="flex flex-col justify-center">
-        <div className="flex items-center gap-1.5 leading-none">
-          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight drop-shadow-[0_2px_4px_rgba(13,148,136,0.18)]">
-            <span className="text-[#60c4a2]">acc</span>
-            <span className="text-[#108a80]">oun</span>
-            <span className="text-[#60c4a2]">dle</span>
+      {/* Brand Typography */}
+      <div className="flex flex-col justify-center -ml-0.5 sm:-ml-1">
+        <div className="flex items-center gap-1 leading-none">
+          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight [font-feature-settings:'cv02','cv03','cv04','cv11'] drop-shadow-[0_2px_4px_rgba(13,148,136,0.18)] group-hover:drop-shadow-[0_3px_6px_rgba(13,148,136,0.26)] transition-all duration-200">
+            <span className="text-[#10b981]">acc</span>
+            <span className="text-[#0d9488]">oun</span>
+            <span className="text-[#10b981]">dle</span>
           </h1>
         </div>
-        <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest text-[#78716c] mt-1 opacity-80">
+        <p className="text-[8px] sm:text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#78716c] group-hover:text-stone-700 mt-1 opacity-80 transition-colors duration-200">
           YOUR DAILY ENTRY
         </p>
       </div>
 
-      {/* Side Badge */}
-      <div className="pl-0.5 sm:pl-1 flex items-center">
-        <span className="text-[8px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg bg-[#dcfce7] text-[#15803d] border border-[#bbf7d0] shadow-[0_1px_2px_rgba(16,185,129,0.12)] whitespace-nowrap">
+      {/* Side Pill Badge */}
+      <div className="pl-1 sm:pl-1.5 flex items-center">
+        <span className="text-[8px] sm:text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md sm:rounded-lg bg-[#dcfce7] group-hover:bg-[#bbf7d0] text-[#15803d] border border-[#bbf7d0] group-hover:border-[#86efac] shadow-[0_1px_2px_rgba(16,185,129,0.15)] whitespace-nowrap transition-all duration-200">
           daily
         </span>
       </div>
@@ -99,6 +99,7 @@ function CalculatorModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
       } else if (e.key === "Escape") {
         onClose();
       }
+      
     }
 
     window.addEventListener("keydown", handleKeyDown);
